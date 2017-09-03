@@ -1,6 +1,8 @@
 package config
 
 import (
+	"os"
+
 	"github.com/labstack/echo"
 )
 
@@ -9,5 +11,5 @@ func StartApp() {
 	e := echo.New()
 	Routes(e)
 
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
 }
