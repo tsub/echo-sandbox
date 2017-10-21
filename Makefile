@@ -21,3 +21,8 @@ fmt:
 vet:
 	go vet $(SRC)
 .PHONY: vet
+
+dotenv:
+	@echo "Create .env with .env.template"
+	cp .env.template .env
+.PHONY: dotenv

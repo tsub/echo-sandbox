@@ -7,17 +7,12 @@ A sandbox for the [echo] framework.
 ### With Go
 
 ```
+$ make dotenv
+$ export $(cat .env)
 $ make deps
 $ make build
-$ PORT=3000 build/echo-sandbox &
-$ curl localhost:3000
-```
-
-### With Docker
-
-```
-$ docker build -t tsub/echo-sandbox .
-$ docker run -d -p 3000:3000 tsub/echo-sandbox
+$ docker-compose up -d
+$ build/echo-sandbox &
 $ curl localhost:3000
 ```
 
