@@ -7,6 +7,9 @@ import (
 
 // Routes ...
 func Routes(e *echo.Echo) {
-	e.GET("/", controller.PostsIndex)
-	e.GET("/posts", controller.PostsIndex)
+	e.GET("/api/v1/posts", controller.PostsIndex)
+	e.GET("/api/v1/posts/:id", controller.PostShow)
+	e.POST("/api/v1/posts", controller.PostCreate)
+	e.PATCH("/api/v1/posts/:id", controller.PostUpdate)
+	e.DELETE("/api/v1/posts/:id", controller.PostDelete)
 }

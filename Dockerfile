@@ -12,7 +12,10 @@ RUN apk add --update \
 
 FROM alpine:3.6
 
-ENV PORT=3000
+ENV PORT=3000 \
+    DB_HOST=postgres \
+    DB_USER=postgres \
+    DB_NAME=dev.echo-sandbox
 
 COPY --from=builder /go/src/github.com/tsub/echo-sandbox/build/echo-sandbox /echo-sandbox
 
