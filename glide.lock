@@ -1,6 +1,8 @@
-hash: a23a28270a7225fb60a9350cd2af46d811bd7a7f7abd3650b24213dbb29411ca
-updated: 2017-09-04T00:09:57.575765131+09:00
+hash: 1b0d269eb2b08754392fe9036170915bc5530a282032f1ee5d83ef0da594ed67
+updated: 2017-10-21T20:21:52.358885+09:00
 imports:
+- name: github.com/jinzhu/gorm
+  version: 5174cc5c242a728b435ea2be8a2f7f998e15429b
 - name: github.com/labstack/echo
   version: cec7629194fe4bf83b0c72d9a02d340c7a1468ac
 - name: github.com/labstack/gommon
