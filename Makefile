@@ -10,6 +10,10 @@ build:
 	go build -o build/$(PROJECT)
 .PHONY: build
 
+build_prod:
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o build/$(PROJECT)
+.PHONY: build_prod
+
 test:
 	go test $(SRC) $(TESTARGS)
 .PHONY: test

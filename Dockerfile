@@ -8,9 +8,9 @@ RUN apk add --update \
         git \
         glide && \
     make deps && \
-    make build
+    make build_prod
 
-FROM alpine:3.6
+FROM scratch
 
 ENV PORT=3000 \
     DB_HOST=postgres \
