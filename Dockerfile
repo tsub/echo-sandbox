@@ -1,15 +1,17 @@
 FROM golang:1.9-alpine AS builder
 
-COPY . /go/src/github.com/tsub/echo-sandbox
-WORKDIR /go/src/github.com/tsub/echo-sandbox
-
 RUN apk add --update \
         ca-certificates \
         make \
         git \
-        glide && \
-    make deps && \
-    make build_prod
+        glide
+
+WORKDIR /go/src/github.com/tsub/echo-sandbox
+COPY glide* Makefile /go/src/github.com/tsub/echo-sandbox/
+RUN make deps
+
+COPY . /go/src/github.com/tsub/echo-sandbox/
+RUN make build_prod
 
 FROM scratch
 
