@@ -1,3 +1,11 @@
-.git
-.gitignore
-vendor
+.env
+/.dockerignore
+/.env.template
+/.git
+/.gitignore
+/Dockerfile
+/docker-compose.yml
+/kubernetes
+/skaffold.yaml
+/vendor
+README.md

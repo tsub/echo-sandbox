@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: server
+  name: echo-server
+spec:
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+      - image: tsub/echo-sandbox
+        name: server
+        env:
+        - name: DB_HOST
+          value: echo-db
+        - name: DB_USER
+          value: postgres
+        - name: DB_NAME
+          value: dev.echo-sandbox
+        - name: PORT
+          value: "3000"
+        ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: db
+  name: echo-db
+spec:
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - image: postgres:10-alpine
+        name: db
+        env:
+        - name: POSTGRES_DB
+          value: dev.echo-sandbox
+        ports:
+        - containerPort: 5432

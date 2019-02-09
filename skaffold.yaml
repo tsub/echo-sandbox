@@ -1,0 +1,11 @@
+apiVersion: skaffold/v1beta4
+kind: Config
+
+build:
+  artifacts:
+  - image: tsub/echo-sandbox
+
+deploy:
+  kubectl:
+    manifests:
+      - kubernetes/**
