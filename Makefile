@@ -1,9 +1,10 @@
-PROJECT  = echo-sandbox
-SRC      ?= $(shell go list ./... | grep -v vendor)
-TESTARGS ?= -v
+PROJECT     = echo-sandbox
+GO111MODULE = on
+SRC         ?= $(shell go list ./... | grep -v vendor)
+TESTARGS    ?= -v
 
 deps:
-	glide install
+	go mod download
 .PHONY: deps
 
 build:

@@ -1,16 +1,15 @@
-FROM golang:1.9-alpine AS builder
+FROM golang:1.11-alpine AS builder
 
 RUN apk add --update \
         ca-certificates \
         make \
-        git \
-        glide
+        git
 
-WORKDIR /go/src/github.com/tsub/echo-sandbox
-COPY glide* Makefile /go/src/github.com/tsub/echo-sandbox/
+WORKDIR /app
+COPY go.mod go.sum Makefile /app/
 RUN make deps
 
-COPY . /go/src/github.com/tsub/echo-sandbox/
+COPY . /app/
 RUN make build_prod
 
 FROM scratch
@@ -20,7 +19,7 @@ ENV PORT=3000 \
     DB_USER=postgres \
     DB_NAME=dev.echo-sandbox
 
-COPY --from=builder /go/src/github.com/tsub/echo-sandbox/build/echo-sandbox /
+COPY --from=builder /app/build/echo-sandbox /
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 CMD ["./echo-sandbox"]
